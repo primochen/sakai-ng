@@ -179,4 +179,17 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
             this.subscription.unsubscribe();
         }
     }
+
+    public tabs = [
+        {label:'XXX1', isVisible: true, isDisabled: false},
+        {label:'XXX2', isVisible: true, isDisabled: false},
+        {label:'XXX3', isVisible: true, isDisabled: false},
+        {label:'XXX4', isVisible: true, isDisabled: false}
+    ]
+
+    onTabChange(event: any) {
+        console.log(event);
+        //    this.router.navigate([this.tabs[event.index].route],
+        //     { relativeTo: this.route, skipLocationChange: true, preserveQueryParams: true });                 
+    } 
 }

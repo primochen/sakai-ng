@@ -12,7 +12,20 @@
     </div>
     <div class="layout-main-container">
         <div class="layout-main">
-            <router-outlet></router-outlet>
+            <p-tabView (onChange)="onTabChange($event)">
+                  <p-tabPanel
+                   *ngFor="let item of tabs; let i = index"
+                   closable='true'
+                   [header]="item.label" [selected]="i == 0" [disabled]="item.isDisabled" >
+                  </p-tabPanel>
+                <router-outlet></router-outlet>
+            </p-tabView>
+            <!-- <p-tabView>
+                <p-tabPanel header="Home" leftIcon="fa-bar-chart-o"></p-tabPanel>
+                <p-tabPanel header="Hierarquia" leftIcon="fa-sitemap"></p-tabPanel>
+                <p-tabPanel header="Configurações" leftIcon="fa-cog"></p-tabPanel>
+                <router-outlet></router-outlet>
+            </p-tabView> -->
         </div>
         <app-footer></app-footer>
     </div>

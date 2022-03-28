@@ -116,6 +116,9 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
             return;
         }
 
+        console.log(this.key) 
+        console.log(this.item) 
+
         // notify other items
         this.menuService.onMenuStateChange(this.key);
 
