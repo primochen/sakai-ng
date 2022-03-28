@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { MenuService } from './service/app.menu.service';
 import { AppMainComponent } from './app.main.component';
+import { TabService } from './service/app.tab.service';
 
 @Component({
     /* tslint:disable:component-selector */
@@ -74,7 +75,11 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     key: string;
 
-    constructor(public app: AppMainComponent, public router: Router, private cd: ChangeDetectorRef, private menuService: MenuService) {
+    constructor(public app: AppMainComponent,
+         public router: Router,
+          private cd: ChangeDetectorRef,
+          public tabService: TabService,
+          private menuService: MenuService) {
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(key => {
             // deactivate current active menu
             if (this.active && this.key !== key && key.indexOf(this.key) !== 0) {
@@ -108,6 +113,25 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         this.active = this.router.isActive(this.item.routerLink[0], this.item.items ? false : true);
     }
 
+    onAddTab(label: string, link: string): void {
+        let isNotContain = true;
+        this.tabService.tabs.forEach(tab => {
+          if (tab.label === label) {
+            // this.tabs.splice(index, 1);
+            // this.selected.setValue(this.previousTab?.id);
+            // this.router.navigate([this.previousTab?.link]);
+            // console.log('onAddTab:'+name);
+            isNotContain = false;
+            // sessionStorage.setItem(this.sessionKey, JSON.stringify(this.previousTab));
+          }
+        });
+        // console.log('isNotContain:'+isNotContain);
+        if (isNotContain) {
+          // console.log('onAddTab');
+          this.tabService.tabs.push({ label, link ,isVisible: true, isDisabled: false});
+        }
+    }
+
     itemClick(event: Event) {
         event.stopPropagation();
         // avoid processing disabled items
@@ -116,8 +140,10 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
             return;
         }
 
-        console.log(this.key) 
-        console.log(this.item) 
+        // console.log(this.key) 
+        // console.log(this.item) 
+
+        this.onAddTab(this.item.label,this.item.routerLink[0])
 
         // notify other items
         this.menuService.onMenuStateChange(this.key);

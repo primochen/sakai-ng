@@ -13,7 +13,7 @@
     <div class="layout-main-container">
         <div class="layout-main">
             <p-tabView (onChange)="onTabChange($event)">
-                  <p-tabPanel
+                  <p-tabPanel 
                    *ngFor="let item of tabs; let i = index"
                    closable='true'
                    [header]="item.label" [selected]="i == 0" [disabled]="item.isDisabled" >

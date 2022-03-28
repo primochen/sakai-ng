@@ -1,9 +1,12 @@
-import { Component, AfterViewInit, OnDestroy, Renderer2, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, Renderer2, OnInit, ViewChild } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { AppComponent } from './app.component';
 import { ConfigService } from './service/app.config.service';
 import { AppConfig } from './api/appconfig';
 import { Subscription } from 'rxjs';
+import { TabService } from './service/app.tab.service';
+import { TabView } from 'primeng/tabview';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-main',
@@ -53,7 +56,11 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     subscription: Subscription;
     
-    constructor(public renderer: Renderer2, public app: AppComponent, public configService: ConfigService) { }
+    constructor(public renderer: Renderer2,
+         public app: AppComponent,
+         public tabService: TabService,
+         public router: Router,
+         public configService: ConfigService) { }
 
     ngOnInit() {
         this.config = this.configService.config;
@@ -180,16 +187,25 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
         }
     }
 
-    public tabs = [
-        {label:'XXX1', isVisible: true, isDisabled: false},
-        {label:'XXX2', isVisible: true, isDisabled: false},
-        {label:'XXX3', isVisible: true, isDisabled: false},
-        {label:'XXX4', isVisible: true, isDisabled: false}
-    ]
+    public tabs = this.tabService.tabs
+    // [
+    //     {label:'XXX1', isVisible: true, isDisabled: false},
+    //     {label:'XXX2', isVisible: true, isDisabled: false},
+    //     {label:'XXX3', isVisible: true, isDisabled: false},
+    //     {label:'XXX4', isVisible: true, isDisabled: false}
+    // ]
+
+    @ViewChild(TabView) tabView: TabView;
+    selectedIndex = 0;
 
     onTabChange(event: any) {
-        console.log(event);
+        // console.log('tab....');
+        // console.log(event);
+        this.selectedIndex = event.index;
+        // console.log(this.tabView.tabs[this.selectedIndex].header);
+        console.log(this.tabView.tabs[this.selectedIndex]);
         //    this.router.navigate([this.tabs[event.index].route],
-        //     { relativeTo: this.route, skipLocationChange: true, preserveQueryParams: true });                 
+        //     { relativeTo: this.route, skipLocationChange: true, preserveQueryParams: true });          
+        this.router.navigate([this.tabs[event.index].link]);     
     } 
 }
