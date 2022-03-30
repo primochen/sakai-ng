@@ -140,6 +140,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AccessComponent } from './components/access/access.component';
+import { RouteReuseStrategy } from '@angular/router';
+import { SimpleReuseStrategy } from './service/reuse-strategy';
 
 @NgModule({
     imports: [
@@ -275,6 +277,7 @@ import { AccessComponent } from './components/access/access.component';
         AccessComponent,
     ],
     providers: [
+        {provide: RouteReuseStrategy, useClass: SimpleReuseStrategy},
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, MenuService, ConfigService
