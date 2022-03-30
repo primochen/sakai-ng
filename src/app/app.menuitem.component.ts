@@ -6,6 +6,7 @@ import { filter } from 'rxjs/operators';
 import { MenuService } from './service/app.menu.service';
 import { AppMainComponent } from './app.main.component';
 import { TabService } from './service/app.tab.service';
+import { AppMenuComponent } from './app.menu.component';
 
 @Component({
     /* tslint:disable:component-selector */
@@ -75,20 +76,49 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
     key: string;
 
+    private flattenDeep(arr1) {
+        return arr1.reduce((acc, val) => { 
+            // console.log(val.items)
+            return Array.isArray(val.items) ? acc.concat(this.flattenDeep(val.items)) : acc.concat(val)
+        }, []);
+     }
+
     constructor(public app: AppMainComponent,
          public router: Router,
           private cd: ChangeDetectorRef,
           public tabService: TabService,
-          private changeDetectorRef: ChangeDetectorRef,
+          public appMenuComponent: AppMenuComponent,
           private menuService: MenuService) {
 
-        // this.tabSourceSubscription = this.tabService.tabSource$.subscribe(key => {
-        //     // deactivate current active menu
-        //     // if (this.active && this.key !== key && key.indexOf(this.key) !== 0) {
-        //     //     this.active = false;
-        //     // }
-        //     this.selectedIndex = key
-        // });
+        //*****************
+        let isNotContain = true;
+        this.tabService.tabs.forEach(tab => {      
+          if (tab.link === this.router.url) {
+            isNotContain = false;
+          }
+        });
+        // console.log(isNotContain)
+        // console.log(this.router.url)
+        // console.log(this.tabService.tabs)        
+        // console.log(this.appMenuComponent.model)    
+        // https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Array/flat#browser_compatibility
+
+        if(isNotContain)
+        {
+            let tabArray = this.flattenDeep(this.appMenuComponent.model);
+            // console.log(tabArray)
+            let tabArray2 = tabArray.filter(e => e.routerLink && e.routerLink[0] === this.router.url)
+            // console.log(tabArray2)
+            // console.log(tabArray2[0].label)
+            // console.log(tabArray2[0].routerLink)
+
+            this.tabService.tabs.push({ label: tabArray2[0].label, link: this.router.url ,isVisible: true, isDisabled: false});
+            setTimeout(() => {
+                  this.tabService.selectedIndex = this.tabService.tabs.length - 1  
+              }, 200);   
+        }
+        
+        //*****************
 
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(key => {
             // deactivate current active menu
@@ -154,7 +184,7 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
             if (tab.label === label) {
                 this.tabService.selectedIndex = index
                 // this.tabService.onTabStateChange(index)
-                console.log(tab.label+' '+label +' '+index);                  
+                // console.log(tab.label+' '+label +' '+index);                  
             }
           });
         } 
@@ -171,7 +201,10 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         // console.log(this.key) 
         // console.log(this.item) 
 
-        this.onAddTab(this.item.label,this.item.routerLink[0])
+        if(this.item.routerLink && this.item.routerLink[0])
+        {
+           this.onAddTab(this.item.label,this.item.routerLink[0])
+        }
 
         // notify other items
         this.menuService.onMenuStateChange(this.key);

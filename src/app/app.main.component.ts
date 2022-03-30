@@ -61,13 +61,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
          public tabService: TabService,
          public router: Router,
          public configService: ConfigService) { 
-            // this.tabSourceSubscription = this.tabService.tabSource$.subscribe(key => {
-            //     // deactivate current active menu
-            //     // if (this.active && this.key !== key && key.indexOf(this.key) !== 0) {
-            //     //     this.active = false;
-            //     // }
-            //     this.selectedIndex = key
-            // });
+
 
          }
 
@@ -212,7 +206,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     onTabChange(event: any) {
         // console.log('tab....');
-        console.log(event);
+        // console.log(event);
         this.tabService.selectedIndex = event.index;
         // this.selectedIndex = event.index;
         // this.tabService.onTabStateChange(event.index)
