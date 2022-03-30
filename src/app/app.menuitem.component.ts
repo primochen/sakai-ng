@@ -79,7 +79,17 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
          public router: Router,
           private cd: ChangeDetectorRef,
           public tabService: TabService,
+          private changeDetectorRef: ChangeDetectorRef,
           private menuService: MenuService) {
+
+        // this.tabSourceSubscription = this.tabService.tabSource$.subscribe(key => {
+        //     // deactivate current active menu
+        //     // if (this.active && this.key !== key && key.indexOf(this.key) !== 0) {
+        //     //     this.active = false;
+        //     // }
+        //     this.selectedIndex = key
+        // });
+
         this.menuSourceSubscription = this.menuService.menuSource$.subscribe(key => {
             // deactivate current active menu
             if (this.active && this.key !== key && key.indexOf(this.key) !== 0) {
@@ -113,9 +123,11 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         this.active = this.router.isActive(this.item.routerLink[0], this.item.items ? false : true);
     }
 
+    tabSourceSubscription: Subscription;
+
     onAddTab(label: string, link: string): void {
         let isNotContain = true;
-        this.tabService.tabs.forEach(tab => {
+        this.tabService.tabs.forEach(tab => {      
           if (tab.label === label) {
             // this.tabs.splice(index, 1);
             // this.selected.setValue(this.previousTab?.id);
@@ -129,7 +141,23 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
         if (isNotContain) {
           // console.log('onAddTab');
           this.tabService.tabs.push({ label, link ,isVisible: true, isDisabled: false});
+          // https://stackoverflow.com/questions/49579035/primeng-programmatically-change-tab-when-using-ngfor-on-tabpanel
+          // this.changeDetectorRef.detectChanges();
+          // this.tabService.selectedIndex = this.tabService.tabs.length - 1  
+          setTimeout(() => {
+                this.tabService.selectedIndex = this.tabService.tabs.length - 1  
+            }, 200);        
         }
+        else
+        {
+        this.tabService.tabs.forEach((tab, index) => {                
+            if (tab.label === label) {
+                this.tabService.selectedIndex = index
+                // this.tabService.onTabStateChange(index)
+                console.log(tab.label+' '+label +' '+index);                  
+            }
+          });
+        } 
     }
 
     itemClick(event: Event) {

@@ -7,6 +7,14 @@ import { Subject } from 'rxjs';
 export class TabService {
 
     public tabs: SidenavRouteInterface[] = [{ label: 'Dashboard', link: '',isVisible: true, isDisabled: false}];
+    public selectedIndex: number = 0;
+
+    // private tabSource = new Subject<number>();
+    // tabSource$ = this.tabSource.asObservable();    
+
+    // onTabStateChange(key: number) {
+    //     this.tabSource.next(key);
+    // }
 }
 
 export interface SidenavRouteInterface {

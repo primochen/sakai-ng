@@ -12,11 +12,13 @@
     </div>
     <div class="layout-main-container">
         <div class="layout-main">
-            <p-tabView (onChange)="onTabChange($event)">
+            <p-tabView (onChange)="onTabChange($event)" [(activeIndex)]="this.tabService.selectedIndex"
+            (onClose)="onTabClose($event)"
+            >
                   <p-tabPanel 
                    *ngFor="let item of tabs; let i = index"
-                   closable='true'
-                   [header]="item.label" [selected]="i == 0" [disabled]="item.isDisabled" >
+                   [closable]='item.label=="Dashboard" ? false:true'
+                   [header]="item.label" [disabled]="item.isDisabled" >
                   </p-tabPanel>
                 <router-outlet></router-outlet>
             </p-tabView>

@@ -3,7 +3,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { AppComponent } from './app.component';
 import { ConfigService } from './service/app.config.service';
 import { AppConfig } from './api/appconfig';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { TabService } from './service/app.tab.service';
 import { TabView } from 'primeng/tabview';
 import { Router } from '@angular/router';
@@ -60,7 +60,16 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
          public app: AppComponent,
          public tabService: TabService,
          public router: Router,
-         public configService: ConfigService) { }
+         public configService: ConfigService) { 
+            // this.tabSourceSubscription = this.tabService.tabSource$.subscribe(key => {
+            //     // deactivate current active menu
+            //     // if (this.active && this.key !== key && key.indexOf(this.key) !== 0) {
+            //     //     this.active = false;
+            //     // }
+            //     this.selectedIndex = key
+            // });
+
+         }
 
     ngOnInit() {
         this.config = this.configService.config;
@@ -188,6 +197,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
     }
 
     public tabs = this.tabService.tabs
+
     // [
     //     {label:'XXX1', isVisible: true, isDisabled: false},
     //     {label:'XXX2', isVisible: true, isDisabled: false},
@@ -196,16 +206,49 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
     // ]
 
     @ViewChild(TabView) tabView: TabView;
-    selectedIndex = 0;
+    // public selectedIndex: Subject<number> = this.tabService.selectedIndex
+    // public selectedIndex: Subject<number> = this.tabService.tabSource$
+    // tabSourceSubscription: Subscription;
 
     onTabChange(event: any) {
         // console.log('tab....');
-        // console.log(event);
-        this.selectedIndex = event.index;
+        console.log(event);
+        this.tabService.selectedIndex = event.index;
+        // this.selectedIndex = event.index;
+        // this.tabService.onTabStateChange(event.index)
         // console.log(this.tabView.tabs[this.selectedIndex].header);
-        console.log(this.tabView.tabs[this.selectedIndex]);
+        // console.log(this.selectedIndex);
+        // console.log(this.tabView.tabs[this.selectedIndex]);
         //    this.router.navigate([this.tabs[event.index].route],
         //     { relativeTo: this.route, skipLocationChange: true, preserveQueryParams: true });          
         this.router.navigate([this.tabs[event.index].link]);     
+    } 
+
+    onTabClose(event: any) {
+        // console.log('onTabClose:'+event.index);
+        // console.log(event);
+        this.tabService.selectedIndex = event.index - 1;
+        // this.selectedIndex = event.index;
+        // this.tabService.onTabStateChange(event.index)
+        // console.log(this.tabView.tabs[this.selectedIndex].header);
+        // console.log(this.selectedIndex);
+        // console.log(this.tabView.tabs[this.selectedIndex]);
+        //    this.router.navigate([this.tabs[event.index].route],
+        //     { relativeTo: this.route, skipLocationChange: true, preserveQueryParams: true });    
+        
+        // console.log(this.tabService.tabs);
+        this.tabService.tabs.splice(event.index, 1);
+        // console.log(this.tabService.tabs);
+        // https://stackoverflow.com/questions/49579035/primeng-programmatically-change-tab-when-using-ngfor-on-tabpanel
+        // this.changeDetectorRef.detectChanges();
+        // this.tabService.selectedIndex = this.tabService.tabs.length - 1  
+        /*
+        setTimeout(() => {
+              this.tabService.selectedIndex = this.tabService.tabs.length - 1  
+          }, 200);   
+
+        
+        */  
+        this.router.navigate([this.tabs[event.index - 1].link]);   
     } 
 }
