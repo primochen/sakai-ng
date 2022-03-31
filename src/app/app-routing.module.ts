@@ -28,12 +28,15 @@ import { LoginComponent } from './components/login/login.component';
 import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AccessComponent } from './components/access/access.component';
+import { AuthGuard } from './core/authentication';
 @NgModule({
     imports: [
         RouterModule.forRoot([
             {
                 path: '', component: AppMainComponent,
                 data: {shouldDetach: 'no'},
+                canActivate: [AuthGuard],
+                canActivateChild: [AuthGuard],
                 children: [
                     {path: '', component: DashboardComponent},
                     {path: 'uikit/formlayout', component: FormLayoutComponent ,data: {key: 'uikit/formlayout'}},

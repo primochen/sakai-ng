@@ -142,11 +142,18 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AccessComponent } from './components/access/access.component';
 import { RouteReuseStrategy } from '@angular/router';
 import { SimpleReuseStrategy } from './service/reuse-strategy';
+import { CoreModule } from './core/core.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { httpInterceptorProviders } from '@core/interceptors';
+import { LoginService } from '@core/authentication/login.service';
+import { InMemDataService } from '@shared/in-mem/in-mem-data.service';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         AppRoutingModule,
         HttpClientModule,
         BrowserAnimationsModule,
@@ -170,6 +177,7 @@ import { SimpleReuseStrategy } from './service/reuse-strategy';
         ConfirmPopupModule,
         ColorPickerModule,
         ContextMenuModule,
+        CoreModule,
         DataViewModule,
         DialogModule,
         DividerModule,
@@ -232,6 +240,11 @@ import { SimpleReuseStrategy } from './service/reuse-strategy';
         VirtualScrollerModule,
         AppCodeModule,
         StyleClassModule,
+        //  Demo purposes only for GitHub Pages
+        HttpClientInMemoryWebApiModule.forRoot(InMemDataService, {
+            dataEncapsulation: false,
+            passThruUnknownUrl: true,
+          })
     ],
     declarations: [
         AppComponent,
@@ -280,7 +293,8 @@ import { SimpleReuseStrategy } from './service/reuse-strategy';
         {provide: RouteReuseStrategy, useClass: SimpleReuseStrategy},
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService, MenuService, ConfigService
+        PhotoService, ProductService, MenuService, ConfigService,
+        httpInterceptorProviders,
     ],
     bootstrap: [AppComponent]
 })
