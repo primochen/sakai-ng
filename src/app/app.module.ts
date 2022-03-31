@@ -148,6 +148,8 @@ import { httpInterceptorProviders } from '@core/interceptors';
 import { LoginService } from '@core/authentication/login.service';
 import { InMemDataService } from '@shared/in-mem/in-mem-data.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { UserComponent } from './components/user/user.component';
+import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
 
 @NgModule({
     imports: [
@@ -275,6 +277,8 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
         IconsComponent,
         DocumentationComponent,
         CrudComponent,
+        UserComponent,
+        UserDetailComponent,
         TimelineComponent,
         BlocksComponent,
         BlockViewer,

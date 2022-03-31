@@ -34,6 +34,12 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
+                label: '管理',
+                items: [
+                    {label: '使用者', icon: 'pi pi-fw pi-user-edit', routerLink: ['/pages/user']},
+                ]
+            },
+            {
                 label: 'UI Components',
                 items: [
                     {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']},

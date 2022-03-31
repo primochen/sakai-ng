@@ -111,11 +111,13 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
             // console.log(tabArray2)
             // console.log(tabArray2[0].label)
             // console.log(tabArray2[0].routerLink)
-
-            this.tabService.tabs.push({ label: tabArray2[0].label, link: this.router.url ,isVisible: true, isDisabled: false});
-            setTimeout(() => {
-                  this.tabService.selectedIndex = this.tabService.tabs.length - 1  
-              }, 200);   
+            if(tabArray2 && tabArray2[0])
+            {
+                this.tabService.tabs.push({ label: tabArray2[0].label, link: this.router.url ,isVisible: true, isDisabled: false});
+                setTimeout(() => {
+                    this.tabService.selectedIndex = this.tabService.tabs.length - 1  
+                }, 200);   
+            }
         }
         
         //*****************

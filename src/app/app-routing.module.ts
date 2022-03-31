@@ -29,6 +29,8 @@ import { ErrorComponent } from './components/error/error.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AccessComponent } from './components/access/access.component';
 import { AuthGuard } from './core/authentication';
+import { UserComponent } from './components/user/user.component';
+import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
 @NgModule({
     imports: [
         RouterModule.forRoot([
@@ -39,6 +41,8 @@ import { AuthGuard } from './core/authentication';
                 canActivateChild: [AuthGuard],
                 children: [
                     {path: '', component: DashboardComponent},
+                    {path: 'pages/user', component: UserComponent,data: {key: 'pages/user'}},
+                    {path: 'pages/user/user-detail', component: UserDetailComponent,data: {key: 'pages/user/user-detail'}},
                     {path: 'uikit/formlayout', component: FormLayoutComponent ,data: {key: 'uikit/formlayout'}},
                     {path: 'uikit/input', component: InputComponent,data: {key: 'uikit/input'}},
                     {path: 'uikit/floatlabel', component: FloatLabelComponent,data: {key: 'uikit/floatlabel'}},
