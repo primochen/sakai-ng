@@ -203,7 +203,19 @@ export class AppMenuitemComponent implements OnInit, OnDestroy {
 
         if(this.item.routerLink && this.item.routerLink[0])
         {
-           this.onAddTab(this.item.label,this.item.routerLink[0])
+           if(this.item.label === 'Login' ||
+              this.item.label === 'Landing' ||
+              this.item.label === 'Not Found' ||
+              this.item.label === 'Access Denied' ||
+              this.item.label === 'Error'
+             )
+           {
+
+           }
+           else
+           {
+              this.onAddTab(this.item.label,this.item.routerLink[0])
+           }
         }
 
         // notify other items
