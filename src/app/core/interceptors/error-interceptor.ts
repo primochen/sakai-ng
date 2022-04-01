@@ -9,6 +9,11 @@ import {
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+// import { MessageService } from 'primeng/api';
+// import { MessageService } from '@shared/services/message.service';
+// import { MessageService as MessageServiceNg } from 'primeng/api';
+// import { ToastService } from 'app/service/toastservice';
 // import { ToastrService } from 'ngx-toastr';
 
 export enum STATUS {
@@ -34,11 +39,17 @@ export class ErrorInterceptor implements HttpInterceptor {
     return `${error.status} ${error.statusText}`;
   };
 
-  constructor(private router: Router
-    // , private toast: ToastrService
+  constructor(
+    // private messageService: MessageService,
+    private router: Router,
+    // private messenger: MessageService,
+    // private messengerNg: MessageServiceNg
+    // private toastService: ToastService,
+    // private messageService: MessageService
+    private toast: ToastrService
     ) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {    
     return next
       .handle(request)
       .pipe(catchError((error: HttpErrorResponse) => this.handleError(error)));
@@ -51,9 +62,10 @@ export class ErrorInterceptor implements HttpInterceptor {
       });
     } else {
       console.error('ERROR', error);
-      // this.toast.error(this.getMessage(error));
+      this.toast.error(this.getMessage(error));
       if (error.status === STATUS.UNAUTHORIZED) {
-        this.router.navigateByUrl('/auth/login');
+        // this.router.navigateByUrl('/auth/login');        
+        this.router.navigateByUrl('/pages/login');
       }
     }
 

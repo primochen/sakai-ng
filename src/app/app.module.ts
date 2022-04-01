@@ -150,6 +150,7 @@ import { InMemDataService } from '@shared/in-mem/in-mem-data.service';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { UserComponent } from './components/user/user.component';
 import { UserDetailComponent } from './components/user/user-detail/user-detail.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
     imports: [
@@ -246,7 +247,8 @@ import { UserDetailComponent } from './components/user/user-detail/user-detail.c
         HttpClientInMemoryWebApiModule.forRoot(InMemDataService, {
             dataEncapsulation: false,
             passThruUnknownUrl: true,
-          })
+          }),
+        ToastrModule.forRoot({positionClass: 'toast-center-center',timeOut: 2000,}),
     ],
     declarations: [
         AppComponent,
@@ -269,7 +271,7 @@ import { UserDetailComponent } from './components/user/user-detail/user-detail.c
         OverlaysComponent,
         MenusComponent,
         MessagesComponent,
-        MessagesComponent,
+        // MessagesComponent,
         MiscComponent,
         ChartsComponent,
         EmptyComponent,
