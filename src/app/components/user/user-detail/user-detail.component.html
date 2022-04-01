@@ -28,10 +28,164 @@
 </div>
 
 <!-------------------------------->
+<!--
+    重點是父層 有 grid
+        子層 有 col-2  col-10  加總 12
 
+    flex justify-content-end  讓 label 靠右    
+-->
 <div class="card">
     <h5>Advanced</h5>
     <div class="formgrid grid">
+        <div class="field col-6 grid">
+            <label htmlFor="name3" class="col-2 mb-0 flex justify-content-start">Name 1/2</label>
+            <div class="col-10">
+                <input pInputText id="name3" type="text" class="inputfield w-full"/>
+            </div>
+        </div>
+        <div class="field col-6 grid">
+            <label htmlFor="email3" class="col-2 mb-0 flex justify-content-center">Email 2/2</label>
+            <div class="col-10">
+                <input pInputText id="email3" type="text" class="inputfield w-full"/>
+            </div>
+        </div>    
+        <div class="field col-12 md:col-4 grid">
+            <label htmlFor="name3" class="col-2 mb-0 flex justify-content-start">Name 1/3</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="name3" type="text" class="inputfield w-full"/>
+            </div>
+        </div>
+        <div class="field col-4 grid">
+            <label htmlFor="email3" class="col-2 mb-0 flex justify-content-center">Email 2/3</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="email3" type="text" class="inputfield w-full"/>
+            </div>
+        </div>  
+        <div class="field col-4 grid">
+            <label htmlFor="emailA" class="col-2 mb-0 flex justify-content-center">AAA 3/3</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="emailA" type="text" class="inputfield w-full"/>
+            </div>
+        </div> 
+        <div class="field col-3 grid">
+            <label htmlFor="email3" class="col-2 mb-0 flex justify-content-start">Email 1/4</label>
+            <div class="col-10">
+                <input pInputText id="email3" type="text" class="inputfield w-full"/>
+            </div>
+        </div>    
+        <div class="field col-3 grid">
+            <label htmlFor="name3" class="col-2 mb-0 flex justify-content-center">Name 2/4</label>
+            <div class="col-10">
+                <input pInputText id="name3" type="text" class="inputfield w-full"/>
+            </div>
+        </div>
+        <div class="field col-3 grid">
+            <label htmlFor="email3" class="col-2 mb-0 flex justify-content-center">Email 3/4</label>
+            <div class="col-10">
+                <input pInputText id="email3" type="text" class="inputfield w-full"/>
+            </div>
+        </div>  
+        <div class="field col-12 md:col-3 grid">
+            <label htmlFor="emailA" class="col-2 mb-0 flex justify-content-center">AAA 4/4</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="emailA" type="text" class="inputfield w-full"/>
+            </div>
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="firstname6">Firstname</label>
+            <input pInputText id="firstname6" type="text" class="inputfield w-full">
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="lastname6">Lastname</label>
+            <input pInputText id="lastname6" type="text" class="inputfield w-full">
+        </div>
+        <div class="field col-12">
+            <label for="address">Address</label>
+            <textarea pInputText id="address" type="text" rows="4" class="inputfield w-full"></textarea>
+        </div>
+        <div class="field col-12 md:col-6">
+            <label for="city">City</label>
+            <input pInputText id="city" type="text" class="inputfield w-full">
+        </div>
+        <div class="field col-12 md:col-3">
+            <label for="state">State</label>
+            <select pInputText id="state" class="w-full inputfield" style="appearance: auto">
+                <option>Arizona</option>
+                <option>California</option>
+                <option>Florida</option>
+                <option>Ohio</option>
+                <option>Washington</option>
+            </select>
+        </div>
+        <div class="field col-12 md:col-3">
+            <label for="zip">Zip</label>
+            <input pInputText id="zip" type="text" class="inputfield w-full">
+        </div>
+    </div>
+</div>
+
+<!-------------------------------->
+<!--
+    重點是父層 有 grid
+        子層 有 col-2  col-10  加總 12
+-->
+<div class="card">
+    <h5>Advanced</h5>
+    <div class="formgrid grid">
+        <div class="field col-12 md:col-6 grid">
+            <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">Name 1/2</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="name3" type="text" class="inputfield w-11"/>
+            </div>
+        </div>
+        <div class="field col-12 md:col-6 grid">
+            <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email 2/2</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="email3" type="text" class="inputfield w-11"/>
+            </div>
+        </div>    
+        <div class="field col-12 md:col-4 grid">
+            <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">Name 1/3</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="name3" type="text" class="inputfield w-11"/>
+            </div>
+        </div>
+        <div class="field col-12 md:col-4 grid">
+            <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email 2/3</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="email3" type="text" class="inputfield w-11"/>
+            </div>
+        </div>  
+        <div class="field col-12 md:col-4 grid">
+            <label htmlFor="emailA" class="col-12 mb-2 md:col-2 md:mb-0">AAA 3/3</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="emailA" type="text" class="inputfield w-11"/>
+            </div>
+        </div> 
+        <div class="field col-12 md:col-3 grid">
+            <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email 1/4</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="email3" type="text" class="inputfield w-11"/>
+            </div>
+        </div>    
+        <div class="field col-12 md:col-3 grid">
+            <label htmlFor="name3" class="col-12 mb-2 md:col-2 md:mb-0">Name 2/4</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="name3" type="text" class="inputfield w-11"/>
+            </div>
+        </div>
+        <div class="field col-12 md:col-3 grid">
+            <label htmlFor="email3" class="col-12 mb-2 md:col-2 md:mb-0">Email 3/4</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="email3" type="text" class="inputfield w-11"/>
+            </div>
+        </div>  
+        <div class="field col-12 md:col-3 grid">
+            <label htmlFor="emailA" class="col-12 mb-2 md:col-2 md:mb-0">AAA 4/4</label>
+            <div class="col-12 md:col-10">
+                <input pInputText id="emailA" type="text" class="inputfield w-11"/>
+            </div>
+        </div>
         <div class="field col-12 md:col-6">
             <label for="firstname6">Firstname</label>
             <input pInputText id="firstname6" type="text" class="inputfield w-full">
