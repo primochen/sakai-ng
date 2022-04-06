@@ -97,7 +97,7 @@
             <div class="field col-12 grid">
                 <label htmlFor="email3" class="col-1 mb-0 flex justify-content-start">公司/單位</label>
                 <div class="col-11">
-                    <input pInputText id="email3" type="text" class="inputfield w-full"/>
+                    <p-treeSelect formControlName="selectedNode" [options]="nodes" placeholder="Select Item"></p-treeSelect>
                 </div>
             </div>
             <div class="field col-12 grid">
