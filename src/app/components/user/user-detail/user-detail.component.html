@@ -87,17 +87,29 @@
             </div>
             <div class="field col-12 grid">
                 <label htmlFor="email3" class="col-1 mb-0 flex justify-content-start">選項</label>
+                <div class="col-11 grid">
+                    <div class="field-checkbox col-1" style="margin-bottom: 0">
+                        <input type="checkbox" formControlName="enable" id="enable" />
+                        <label for="enable" class="form-check-label">啟用</label>
+                    </div>
+                    <div class="field-checkbox col-11" style="margin-bottom: 0">
+                        <input type="checkbox" formControlName="admin" id="admin" />
+                        <label for="admin" class="form-check-label">管理員</label>
+                    </div>
+                </div>
+            </div>
+            <div class="field col-12 grid">
+                <label htmlFor="email3" class="col-1 mb-0 flex justify-content-start">公司/單位(只能選最後)</label>
                 <div class="col-11">
-                    <input type="checkbox" formControlName="enable" id="enable" />
-                    <label for="enable" class="form-check-label">啟用</label>
-                    <input type="checkbox" formControlName="admin" id="admin" />
-                    <label for="admin" class="form-check-label">管理員</label>
+                    <p-cascadeSelect formControlName="selectedNodeA" [options]="nodes" optionLabel="label" optionGroupLabel="label" 
+                         [optionGroupChildren]="['children','children','children']" [style]="{'minWidth': '14rem'}"></p-cascadeSelect>
                 </div>
             </div>
             <div class="field col-12 grid">
                 <label htmlFor="email3" class="col-1 mb-0 flex justify-content-start">公司/單位</label>
                 <div class="col-11">
-                    <p-treeSelect formControlName="selectedNode" [options]="nodes" placeholder="Select Item"></p-treeSelect>
+                    <p-treeSelect formControlName="selectedNode" [options]="nodes" placeholder="請選擇 公司/單位" appendTo="body">
+                    </p-treeSelect>
                 </div>
             </div>
             <div class="field col-12 grid">

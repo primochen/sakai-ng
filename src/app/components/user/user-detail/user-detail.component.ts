@@ -46,8 +46,10 @@ export class UserDetailComponent implements OnInit {
         dob: ['', []], // This set default value
         enable: ['', []],
         doadminb: ['', []],
+        admin: ['', []],
         selectedCityCodes: ['', []],
         selectedNode: ['', []],
+        selectedNodeA: ['', []],
       });
 
     constructor(private productService: ProductService, private messageService: MessageService,
@@ -55,32 +57,31 @@ export class UserDetailComponent implements OnInit {
                 private fb: FormBuilder,
                 private confirmationService: ConfirmationService) {
                     this.cities = [
-                        {name: 'New York', code: 'NY'},
-                        {name: 'Rome', code: 'RM'},
-                        {name: 'London', code: 'LDN'},
-                        {name: 'Istanbul', code: 'IST'},
-                        {name: 'Paris', code: 'PRS'}
+                        {name: '訪客', code: 'NY'},
+                        {name: '管理員', code: 'RM'},
+                        {name: '超級管理員', code: 'LDN'},
+                        {name: '一般使用者', code: 'IST'}
                     ];
 
                     this.nodes = [
                         {
-                            "label": "Documents",
+                            "label": "測試公司",
                             "data": "Documents Folder",
                             "expandedIcon": "pi pi-folder-open",
                             "collapsedIcon": "pi pi-folder",
                             "children": [{
-                                    "label": "Work",
+                                    "label": "管理部門",
                                     "data": "Work Folder",
                                     "expandedIcon": "pi pi-folder-open",
                                     "collapsedIcon": "pi pi-folder",
-                                    "children": [{"label": "Expenses.doc", "icon": "pi pi-file", "data": "Expenses Document"}, {"label": "Resume.doc", "icon": "pi pi-file", "data": "Resume Document"}]
+                                    "children": [{"label": "管理一課", "icon": "pi pi-file", "data": "Expenses Document"}, {"label": "管理二課", "icon": "pi pi-file", "data": "Resume Document"}]
                                 },
                                 {
-                                    "label": "Home",
+                                    "label": "工程部門",
                                     "data": "Home Folder",
                                     "expandedIcon": "pi pi-folder-open",
                                     "collapsedIcon": "pi pi-folder",
-                                    "children": [{"label": "Invoices.txt", "icon": "pi pi-file", "data": "Invoices for this month"}]
+                                    "children": [{"label": "工程一部", "icon": "pi pi-file", "data": "Invoices for this month"}]
                                 }]
                         },
                         {
