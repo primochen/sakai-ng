@@ -36,7 +36,10 @@ export class UserDetailComponent implements OnInit {
         // username: ['', [Validators.required]],
         // password: ['', [Validators.required]],
         // rememberMe: [false],
-        myRadio: ['Option 1', []] // This set default value
+        myRadio: ['Option 1', []], // This set default value
+        dob: ['', []], // This set default value
+        enable: ['', []],
+        doadminb: ['', []],
       });
 
     constructor(private productService: ProductService, private messageService: MessageService,

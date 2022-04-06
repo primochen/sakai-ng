@@ -81,13 +81,17 @@
             <div class="field col-6 grid">
                 <label htmlFor="email3" class="col-2 mb-0 flex justify-content-center">生日</label>
                 <div class="col-10">
-                    <input pInputText id="email3" type="text" class="inputfield w-full"/>
+                    <p-calendar appendTo="body" formControlName="dob" dateFormat="yy/mm/dd" showIcon="true"
+                      showButtonBar="true" ></p-calendar>
                 </div>
             </div>
             <div class="field col-12 grid">
                 <label htmlFor="email3" class="col-1 mb-0 flex justify-content-start">選項</label>
                 <div class="col-11">
-                    <input pInputText id="email3" type="text" class="inputfield w-full"/>
+                    <input type="checkbox" formControlName="enable" id="enable" />
+                    <label for="enable" class="form-check-label">啟用</label>
+                    <input type="checkbox" formControlName="admin" id="admin" />
+                    <label for="admin" class="form-check-label">管理員</label>
                 </div>
             </div>
             <div class="field col-12 grid">
