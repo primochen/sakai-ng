@@ -3,6 +3,7 @@ import { Product } from '../../../api/product';
 import { ProductService } from '../../../service/productservice';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     templateUrl: './user-detail.component.html',
@@ -31,8 +32,16 @@ export class UserDetailComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
+    userDetailForm = this.fb.group({
+        // username: ['', [Validators.required]],
+        // password: ['', [Validators.required]],
+        // rememberMe: [false],
+        myRadio: ['Option 1', []] // This set default value
+      });
+
     constructor(private productService: ProductService, private messageService: MessageService,
                 private router: Router,
+                private fb: FormBuilder,
                 private confirmationService: ConfirmationService) {}
 
     ngOnInit() {

@@ -11,6 +11,109 @@
         <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
     </ng-template>
 </p-toolbar>
+
+<!-------------------------------->
+<!--
+    重點是父層 有 grid
+        子層 有 col-2  col-10  加總 12
+
+    flex justify-content-end  讓 label 靠右    
+-->
+<div class="card">
+    <form [formGroup]="userDetailForm">
+        <h5>Advanced</h5>
+        <div class="formgrid grid">
+            <div class="field col-6 grid">
+                <label htmlFor="name3" class="col-2 mb-0 flex justify-content-start">帳號</label>
+                <div class="col-10">
+                    <input pInputText id="name3" type="text" class="inputfield w-full"/>
+                </div>
+            </div>
+            <div class="field col-6 grid">
+                <label htmlFor="email3" class="col-2 mb-0 flex justify-content-center">姓名</label>
+                <div class="col-10">
+                    <input pInputText id="email3" type="text" class="inputfield w-full"/>
+                </div>
+            </div>    
+            <div class="field col-6 grid">
+                <label htmlFor="name3" class="col-2 mb-0 flex justify-content-start">暱稱</label>
+                <div class="col-10">
+                    <input pInputText id="name3" type="text" class="inputfield w-full"/>
+                </div>
+            </div>
+            <div class="field col-6 grid">
+                <label htmlFor="email3" class="col-2 mb-0 flex justify-content-center">性別</label>
+                <div class="col-10 flex justify-content-start">
+                    <!-- <p-radioButton name="myRadio" value="Option 1" label="男" formControlName="myRadio" inputId="opt1"></p-radioButton>
+                    <p-radioButton name="myRadio" value="Option 2" label="女" formControlName="myRadio" inputId="opt2"></p-radioButton> -->
+                    <!-- <p-radioButton name="myRadio" value="Option 1" label="男" formControlName="myRadio" inputId="opt1"></p-radioButton>
+                    <p-radioButton name="myRadio" value="Option 2" label="女" formControlName="myRadio" inputId="opt2"></p-radioButton> -->
+                    <div class="formgrid grid">
+                        <div class="field-radiobutton col-6" style="margin-bottom: 0">
+                            <p-radioButton id="category1" name="myRadio" value="Accessories" formControlName="myRadio"></p-radioButton>
+                            <label for="category1">男</label>
+                        </div>
+                        <div class="field-radiobutton col-6" style="margin-bottom: 0">
+                            <p-radioButton id="category2" name="myRadio" value="Clothing" formControlName="myRadio"></p-radioButton>
+                            <label for="category2">女</label>
+                        </div>
+                    </div>    
+                </div>
+            </div>   
+            <div class="field col-6 grid">
+                <label htmlFor="name3" class="col-2 mb-0 flex justify-content-start">手機號碼</label>
+                <div class="col-10">
+                    <input pInputText id="name3" type="text" class="inputfield w-full"/>
+                </div>
+            </div>
+            <div class="field col-6 grid">
+                <label htmlFor="email3" class="col-2 mb-0 flex justify-content-center">Line ID</label>
+                <div class="col-10">
+                    <input pInputText id="email3" type="text" class="inputfield w-full"/>
+                </div>
+            </div>    
+            <div class="field col-6 grid">
+                <label htmlFor="name3" class="col-2 mb-0 flex justify-content-start">Email</label>
+                <div class="col-10">
+                    <input pInputText id="name3" type="text" class="inputfield w-full"/>
+                </div>
+            </div>
+            <div class="field col-6 grid">
+                <label htmlFor="email3" class="col-2 mb-0 flex justify-content-center">生日</label>
+                <div class="col-10">
+                    <input pInputText id="email3" type="text" class="inputfield w-full"/>
+                </div>
+            </div>
+            <div class="field col-12 grid">
+                <label htmlFor="email3" class="col-1 mb-0 flex justify-content-start">選項</label>
+                <div class="col-11">
+                    <input pInputText id="email3" type="text" class="inputfield w-full"/>
+                </div>
+            </div>
+            <div class="field col-12 grid">
+                <label htmlFor="email3" class="col-1 mb-0 flex justify-content-start">公司/單位</label>
+                <div class="col-11">
+                    <input pInputText id="email3" type="text" class="inputfield w-full"/>
+                </div>
+            </div>
+            <div class="field col-12 grid">
+                <label htmlFor="email3" class="col-1 mb-0 flex justify-content-start">角色</label>
+                <div class="col-11">
+                    <input pInputText id="email3" type="text" class="inputfield w-full"/>
+                </div>
+            </div>
+            <div class="field col-12 grid">
+                <label htmlFor="email3" class="col-1 mb-0 flex justify-content-start">備註</label>
+                <div class="col-11">
+                    <input pInputText id="email3" type="text" class="inputfield w-full"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-------------------------------->
+<!--
 <div class="card p-fluid">
     <h5>Horizontal</h5>
     <div class="field grid">
@@ -26,7 +129,7 @@
         </div>
     </div>
 </div>
-
+-->
 <!-------------------------------->
 <!--
     重點是父層 有 grid
@@ -34,6 +137,7 @@
 
     flex justify-content-end  讓 label 靠右    
 -->
+<!--
 <div class="card">
     <h5>Advanced</h5>
     <div class="formgrid grid">
@@ -123,12 +227,13 @@
         </div>
     </div>
 </div>
-
+-->
 <!-------------------------------->
 <!--
     重點是父層 有 grid
         子層 有 col-2  col-10  加總 12
 -->
+<!--
 <div class="card">
     <h5>Advanced</h5>
     <div class="formgrid grid">
@@ -218,9 +323,9 @@
         </div>
     </div>
 </div>
-
+-->
 <!-------------------------------->
-
+<!--
 <div class="card">
     <h5>Advanced</h5>
     <div class="formgrid grid">
@@ -256,3 +361,4 @@
         </div>
     </div>
 </div>
+-->
