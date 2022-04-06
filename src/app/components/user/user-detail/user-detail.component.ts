@@ -32,6 +32,10 @@ export class UserDetailComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
+    cities: City[];
+
+    selectedCityCodes: string[];
+
     userDetailForm = this.fb.group({
         // username: ['', [Validators.required]],
         // password: ['', [Validators.required]],
@@ -40,12 +44,22 @@ export class UserDetailComponent implements OnInit {
         dob: ['', []], // This set default value
         enable: ['', []],
         doadminb: ['', []],
+        selectedCityCodes: ['', []],
       });
 
     constructor(private productService: ProductService, private messageService: MessageService,
                 private router: Router,
                 private fb: FormBuilder,
-                private confirmationService: ConfirmationService) {}
+                private confirmationService: ConfirmationService) {
+                    this.cities = [
+                        {name: 'New York', code: 'NY'},
+                        {name: 'Rome', code: 'RM'},
+                        {name: 'London', code: 'LDN'},
+                        {name: 'Istanbul', code: 'IST'},
+                        {name: 'Paris', code: 'PRS'}
+                    ];
+
+                }
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);
@@ -156,4 +170,9 @@ export class UserDetailComponent implements OnInit {
         }
         return id;
     }
+}
+
+interface City {
+    name: string,
+    code: string
 }

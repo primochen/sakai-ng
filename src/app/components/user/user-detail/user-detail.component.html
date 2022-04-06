@@ -103,7 +103,7 @@
             <div class="field col-12 grid">
                 <label htmlFor="email3" class="col-1 mb-0 flex justify-content-start">角色</label>
                 <div class="col-11">
-                    <input pInputText id="email3" type="text" class="inputfield w-full"/>
+                    <p-multiSelect [options]="cities" formControlName="selectedCityCodes" display="chip" optionLabel="name"></p-multiSelect>
                 </div>
             </div>
             <div class="field col-12 grid">
